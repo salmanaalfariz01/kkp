@@ -1,15 +1,16 @@
-function showCategory(category) {
-    const sections = document.querySelectorAll('.category-section');
-    sections.forEach(section => {
-        section.style.display = 'none';
+<script>
+    document.getElementById('language-switcher').addEventListener('change', function () {
+        const selectedLanguage = this.value;
+        if (selectedLanguage === 'en') {
+            // Ganti teks menjadi Bahasa Inggris
+            document.querySelector('h2').textContent = "Welcome to Zikri Store!";
+            document.querySelector('p').textContent = "Find our collection of women's clothing:";
+            // Tambahkan perubahan lain sesuai kebutuhan
+        } else {
+            // Ganti teks kembali menjadi Bahasa Indonesia
+            document.querySelector('h2').textContent = "Selamat datang di Zikri Store!";
+            document.querySelector('p').textContent = "Temukan koleksi baju wanita kami:";
+            // Tambahkan perubahan lain sesuai kebutuhan
+        }
     });
-
-    const selectedSection = document.getElementById(category);
-    if (selectedSection) {
-        selectedSection.style.display = 'block';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    showCategory('pria');
-});
+</script>

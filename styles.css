@@ -1,82 +1,129 @@
-body, html {
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+    background-color: #ffffff;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex; /* Menggunakan Flexbox */
+    justify-content: space-between; /* Memisahkan logo dan menu */
+    align-items: center; /* Memusatkan vertikal */
+    position: sticky; /* Membuat header tetap */
+    top: 0; /* Menentukan posisi atas */
+    z-index: 1000; /* Menentukan lapisan atas */
+}
+
+header .logo h1 a {
+    color: Black; /* Mengubah warna teks menjadi putih */
+    text-decoration: none; /* Menghilangkan garis bawah */
+}
+
+header .logo h1 a:hover {
+    color: green; /* Warna teks menjadi hijau saat dihover */
+}
+
+nav {
+    flex-grow: 1; /* Membiarkan menu tumbuh untuk mengisi ruang */
+    text-align: center; /* Memusatkan menu */
 }
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    display: inline-flex; /* Menggunakan Flexbox untuk menu */
+    gap: 20px; /* Jarak antar item */
 }
 
 nav ul li {
     display: inline;
-    margin: 0 15px;
 }
 
 nav ul li a {
-    color: white;
+    color: grey;
     text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
 }
 
-main {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
+nav ul li a:hover {
+    color: green; /* Opsional: menambahkan garis bawah saat hover */
 }
 
-h2 {
-    color: #333;
-}
-
-.product-grid {
+.grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Mengatur kolom menjadi 3 */
     gap: 20px;
-    justify-items: center;
+    padding: 20px;
 }
 
-.product {
-    background-color: white;
-    padding: 10px;
+
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 200px;
+    padding: 10px;
     text-align: center;
-    transition: transform 0.3s;
+    background-color: #f9f9f9;
+    transition: transform 0.2s;
 }
 
-.product img {
+.card img {
     width: 100%;
     height: auto;
     border-radius: 5px;
 }
 
-.product:hover {
+.card:hover {
     transform: scale(1.05);
 }
 
-footer {
-    background-color: #333;
+.size-box {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: black;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    width: 100%;
+    line-height: 30px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+    cursor: pointer;
 }
 
-.category-section {
-    display: none;
+.size-box:hover {
+    background-color: #444; /* Slightly lighter shade on hover */
 }
+
+input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
+
+input[type="radio"]:checked + .size-box {
+    background-color: #555; /* Darker background for selected size */
+}
+
+footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+footer a {
+    color: #007BFF; /* Warna untuk tautan */
+    text-decoration: none; /* Menghapus garis bawah */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Menambah garis bawah saat hover */
+}
+
+
