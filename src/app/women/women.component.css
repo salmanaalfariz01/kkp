@@ -1,0 +1,81 @@
+    .mat-tab-group-contaiter {
+    margin-top: 64px;
+    }
+    .drawer-container {
+    position: relative;
+    margin-top: 5px; /* Adjust this based on the height of your toolbar */
+    width: auto;
+    height: auto;
+    background: #eee;
+    
+    }
+
+    
+.size-box {
+  display: inline-block;
+  margin: 2px;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.size-box:hover {
+  background-color: #444; /* Slightly lighter shade on hover */
+}
+
+input[type="radio"] {
+  display: none; /* Hide the default radio button */
+}
+
+input[type="radio"]:checked + .size-box {
+  background-color: #555; /* Darker background for selected size */
+}
+  
+    mat-drawer-content {
+        background-color: white;
+    }
+
+    mat-nav-list {
+    padding: 0;          /* Menghilangkan padding default */
+    margin: 0;           /* Menghilangkan margin default */
+    }
+
+    mat-list-item {
+    display: inline-block; /* Mengubah item menjadi inline-block agar mengikuti ukuran teks */
+    padding: 10px;        /* Menambahkan padding agar ada ruang di dalam item */
+    width: auto;          /* Mengatur lebar otomatis sesuai konten */
+    }
+
+
+  .shirt-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .shirt-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    transition: box-shadow 0.3s;
+  }
+  
+  .shirt-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .shirt-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  

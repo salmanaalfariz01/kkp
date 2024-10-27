@@ -1,0 +1,13 @@
+  .footer {
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    color: black !important;
+  }
+  .mat-toolbar {
+    background: transparent;
+    z-index: 1000;
+  }
+
+  

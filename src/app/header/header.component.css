@@ -1,0 +1,30 @@
+.mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background: transparent;
+    z-index: 1000;
+    gap: 5px; /* Atur jarak antara tombol */
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  mat-toolbar a.white-button {
+    color: white !important; /* Force the color to white */
+  }
+  mat-toolbar a {
+    margin: 0 10px; /* Atur margin untuk jarak antar tombol */
+  }
+  
+  .black-header {
+    background: black; /* Header dengan latar belakang hitam */
+  }
+
+  .transparent-header {
+    background: transparent; 
+  }

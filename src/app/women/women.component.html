@@ -1,0 +1,38 @@
+<mat-tab-group class="mat-tab-group-contaiter">
+  <mat-tab label="Shirt"> 
+    <mat-drawer-container class="drawer-container">
+      <mat-drawer-content>
+        <div class="shirt-list">
+          <div class="shirt-card" *ngFor="let shirt of shirts">
+            <img [src]="shirt.image" alt="{{ shirt.name }}" />
+            <p>{{ shirt.name }}</p>
+            <p>Price: {{ shirt.price }}</p>
+            <div class="size-options">
+              <label>
+                <input type="radio" name="size2" value="S">
+                <span class="size-box">S</span>
+            </label>
+              <label>
+                  <input type="radio" name="size2" value="M">
+                  <span class="size-box">M</span>
+              </label>
+              <label>
+                  <input type="radio" name="size2" value="L">
+                  <span class="size-box">L</span>
+              </label>
+              <label>
+                  <input type="radio" name="size2" value="XL">
+                  <span class="size-box">XL</span>
+              </label>
+          </div>    
+          </div>
+        </div>
+      </mat-drawer-content>
+  </mat-drawer-container>
+  </mat-tab>
+  <mat-tab label="Pants"> Content 2 </mat-tab>
+  <mat-tab label="Shoes"> Content 3 </mat-tab>
+</mat-tab-group>
+
+
+  

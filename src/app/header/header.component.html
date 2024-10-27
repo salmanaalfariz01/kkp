@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" [ngClass]="{'transparent-header': isHome(), 'black-header': [isWomen(), isMen(),isKids()] }">
+    <span><a mat-button (click)="navigateToHome()" class="white-button"> Salman Store </a></span>
+    <span><a mat-button (click)="navigateToWomen()" class="white-button">Women</a></span>
+    <span><a mat-button (click)="navigateToMen()" class="white-button">Men</a></span> 
+    <span><a mat-button (click)="navigateToKids()" class="white-button">Kids</a></span> 
+</mat-toolbar>
+
+  
+
+  
