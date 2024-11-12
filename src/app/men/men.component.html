@@ -1,3 +1,94 @@
-<p>man works!</p>
-
-<img src="/src/assets/logo/logo.jpg" width="500" height="600" alt="man">
+<mat-tab-group class="mat-tab-group-contaiter">
+    <mat-tab label="Shirt"> 
+      <mat-drawer-container class="drawer-container">
+        <mat-drawer-content>
+          <div class="shirt-list">
+            <div class="shirt-card" *ngFor="let shirt of shirts"  (click)="openDialog(shirt)">
+              <img [src]="shirt.image" alt="{{ shirt.name }}" />
+              <p>{{ shirt.name }}</p>
+              <p>Price: {{ shirt.price }}</p>
+                <div class="size-options">
+                  <label>
+                    <input type="radio" name="size2" value="S">
+                    <span class="size-box">S</span>
+                </label>
+                  <label>
+                      <input type="radio" name="size2" value="M">
+                      <span class="size-box">M</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="size2" value="L">
+                      <span class="size-box">L</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="size2" value="XL">
+                      <span class="size-box">XL</span>
+                  </label>
+                </div>
+                
+            </div>
+          </div>
+        </mat-drawer-content>
+      </mat-drawer-container>
+</mat-tab>
+<mat-tab label="Pants"> 
+    <button (click)="openModal()">Open Dialog</button>
+    <div class="overlay-modal" *ngIf="isOpen" (click)="onOverlayClick($event)">
+        <div class="dialog-content-modal">
+            <span class="close-modal" (click)="closeModal()">&times;</span>
+            <div class="main-image-container-modal">
+                <img class="main-image-modal" src="assets/women/7.png" alt="Main Image">
+            </div>
+        </div>
+    </div>
+    
+</mat-tab>
+    <mat-tab label="Shoes"> Content 3 </mat-tab>
+  </mat-tab-group>
+  
+<!-- Dialog -->
+<div class="custom-dialog" *ngIf="isDialogOpen">
+    <div class="dialog-overlay" (click)="closeDialog()"></div>
+    <div class="dialog-content">
+      <!-- Gambar Utama -->
+      <div class="main-image-container">
+        <button class="nav-button left" (click)="previousImage()">&#9664;</button>
+        <img [src]="selectedImage" alt="Main Image" class="main-image" />
+        <button class="nav-button right" (click)="nextImage()">&#9654;</button>
+      </div>
+  
+      <!-- Thumbnail Gambar -->
+      <div class="thumbnail-container">
+          <p class="product-description">{{ selectedShirt.description }}</p>
+            <img *ngFor="let image of selectedShirt.images; let i = index"
+                [src]="image"
+                [class.active]="selectedImage === image"
+                (click)="selectImage(i)"
+                alt="Thumbnail" />
+          <div class="size-options">
+            <label>
+              <input type="radio" name="size2" value="S">
+              <span class="size-box">S</span>
+          </label>
+            <label>
+                <input type="radio" name="size2" value="M">
+                <span class="size-box">M</span>
+            </label>
+            <label>
+                <input type="radio" name="size2" value="L">
+                <span class="size-box">L</span>
+            </label>
+            <label>
+                <input type="radio" name="size2" value="XL">
+                <span class="size-box">XL</span>
+            </label>
+          </div>
+          <p>qty</p>
+          <button class="button-image" (click)="closeDialog()">Cancel</button>
+          <button class="button-image" >Buy</button>
+        </div>
+      </div>
+      <!-- Deskripsi Produk -->
+     
+</div>
+  

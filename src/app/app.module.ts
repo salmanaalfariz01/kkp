@@ -7,6 +7,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 
 
@@ -15,7 +19,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { AppRoutingModule } from './app-routing.module'; // Ensure no circular imports here
 import { AppComponent } from './app.component';
 import { WomenComponent } from './women/women.component';
-import { MenComponent } from './men.men.component';
+import { MenComponent } from './men/men.component';
 import { KidsComponent } from './kids/kids.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -42,7 +46,9 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule, // Ensure this is correctly imported
     MatToolbarModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
+    MatIconModule
 ],
   providers: [ ],
   bootstrap: [AppComponent]

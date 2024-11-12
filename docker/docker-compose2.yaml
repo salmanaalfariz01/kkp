@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: source
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    networks:
+      - db
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_ROOT_PASSWORD: 123456
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_DB: target
+    ports:
+      - "5432:5432"
+    networks:
+      - db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
+  postgres-data:
+    driver: local

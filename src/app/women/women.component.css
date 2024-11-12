@@ -1,6 +1,12 @@
     .mat-tab-group-contaiter {
-    margin-top: 64px;
+    margin-top: 58px;
     }
+    ::ng-deep .mat-tab-group-container .mat-ink-bar {
+      background-color: black !important; /* Force the underline to be black */
+  }
+  
+    
+  
     .drawer-container {
     position: relative;
     margin-top: 5px; /* Adjust this based on the height of your toolbar */
@@ -11,31 +17,31 @@
     }
 
     
-.size-box {
-  display: inline-block;
-  margin: 2px;
-  width: 30px;
-  height: 30px;
-  background-color: black;
-  color: white;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 3px;
-  transition: background-color 0.3s;
-  cursor: pointer;
-}
+    .size-box {
+      display: inline-block;
+      margin: 2px;
+      width: 30px;
+      height: 30px;
+      background-color: black;
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
 
-.size-box:hover {
-  background-color: #444; /* Slightly lighter shade on hover */
-}
+    .size-box:hover {
+      background-color: #444; /* Slightly lighter shade on hover */
+    }
 
-input[type="radio"] {
-  display: none; /* Hide the default radio button */
-}
+    input[type="radio"] {
+      display: none; /* Hide the default radio button */
+    }
 
-input[type="radio"]:checked + .size-box {
-  background-color: #555; /* Darker background for selected size */
-}
+    input[type="radio"]:checked + .size-box {
+      background-color: #555; /* Darker background for selected size */
+    }
   
     mat-drawer-content {
         background-color: white;
@@ -53,29 +59,120 @@ input[type="radio"]:checked + .size-box {
     }
 
 
-  .shirt-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 16px;
-  }
+    .shirt-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      padding: 16px;
+    }
+    
+    .shirt-card {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      transition: box-shadow 0.3s;
+      cursor: pointer;
+    }
+    
+    .shirt-card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .shirt-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    
+
+
+  /* Dialog */
+
   
-  .shirt-card {
+  
+  .custom-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-content {
     background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    transition: box-shadow 0.3s;
-  }
-  
-  .shirt-card:hover {
+    width: 750px; /* Ukuran tetap untuk menjaga posisi */
+    height: 450px; /* Ukuran tetap untuk menjaga posisi */
+    padding: 0;
+    display: flex;
+    position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-image-container {
+    display: flex;
+    height: 100%;
+}
+
+  .thumbnail-container {
+    grid-template-columns: repeat(3, 1fr); /* Tiga kolom */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    padding-left: 30px;
   }
   
-  .shirt-card img {
-    max-width: 100%;
-    height: auto;
+  .thumbnail-container img {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border: 2px solid transparent;
     border-radius: 4px;
+    object-fit: cover; /* Menghindari gambar pecah */
   }
   
+  .thumbnail-container img.active {
+    border-color: #007bff;
+  }
+  
+  .position-image {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 2px; /* Mengurangi jarak antar gambar */
+    padding: 5px; /* Mengurangi padding di sekeliling galeri */
+  }
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.nav-button.left {
+    left: 10px;
+}
+
+.nav-button.right {
+    right: 310px;
+}
