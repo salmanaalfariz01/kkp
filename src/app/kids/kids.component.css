@@ -1,0 +1,28 @@
+.color-box-dialog {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .color-box-dialog.active {
+    border: 2px solid black;
+  }
+  
+  .selected-color-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .selected-color-item button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  

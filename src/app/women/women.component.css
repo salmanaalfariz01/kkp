@@ -22,10 +22,11 @@
       margin: 2px;
       width: 30px;
       height: 30px;
-      background-color: black;
-      color: white;
+      background-color: white;
+      color: black;
       text-align: center;
       line-height: 30px;
+      border: 1px solid black;      
       border-radius: 3px;
       transition: background-color 0.3s;
       cursor: pointer;
@@ -101,6 +102,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 20px; /* Padding tambahan */
 }
 
 .dialog-overlay {
@@ -109,18 +113,28 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .dialog-content {
     background-color: white;
-    width: 750px; /* Ukuran tetap untuk menjaga posisi */
-    height: 450px; /* Ukuran tetap untuk menjaga posisi */
-    padding: 0;
+    width: 80vw;  /* Lebar 80% dari lebar layar */
+    height: 80vh; /* Tinggi 70% dari tinggi layar */
     display: flex;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px; /* Menambahkan sudut tumpul */
+    max-width: 90%;  /* Maksimalkan ukuran agar responsif */
+    max-height: 90%; /* Maksimalkan ukuran agar responsif */
 }
+
+/* Responsif untuk layar lebih kecil */
+@media (max-width: 768px) {
+    .dialog-content {
+        width: 90vw;  /* Lebar dialog menyesuaikan lebih besar */
+        height: 80vh; /* Tinggi dialog menyesuaikan lebih besar */
+    }
+}
+
 
 .main-image-container {
     display: flex;
@@ -169,10 +183,86 @@
     font-size: 18px;
 }
 
+.size-box-dialog {
+  display: inline-block;
+  margin: 2px;
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid black;      
+  border-radius: 3px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.size-box-dialog:hover {
+  background-color: #0932e6; /* Slightly lighter shade on hover */
+}
+
 .nav-button.left {
     left: 10px;
 }
 
 .nav-button.right {
-    right: 310px;
+    right: 510px;
 }
+
+.color-options {
+  display: flex;
+}
+
+.color-box-dialog {
+  width: 10px;
+  height: 14px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s;
+  margin: 3px;
+}
+
+.color-box-dialog.active {
+  transform: scale(1.2); /* Warna yang dipilih akan lebih besar */
+}
+
+.color-box-dialog:hover {
+  opacity: 0.8;
+}
+
+.selected-colors {
+  font-size: 16px;
+  color: black;
+}
+
+
+
+
+.qty-container {
+  display: flex;
+  align-items: center;
+}
+
+.qty-btn {
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.qty-btn:hover {
+  background-color: #555;
+}
+
+.qty-container input {
+  width: 40px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+

@@ -24,6 +24,7 @@ import { KidsComponent } from './kids/kids.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+//import { PurchaseComponent } from './purchase/purchase.component';
 
 
 
@@ -35,7 +36,9 @@ import { FooterComponent } from './footer/footer.component';
     KidsComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+  //  PurchaseComponent
+
   ],
   imports: [
     BrowserModule,
