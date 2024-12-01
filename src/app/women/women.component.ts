@@ -6,13 +6,20 @@ import {MatTabsModule} from '@angular/material/tabs';
 //import { MatDialog } from '@angular/material/dialog';
 //import { DialogComponent } from '../dialog/dialog.component';
 import { MatIcon } from '@angular/material/icon';
+import { DecimalPipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { CartService } from '../buy/cart.service'; // Adjust the path as needed
+
+
+
 
 interface Shirt {
   name: string;
   image: string;
-  price: string;
+  price: number;
   description: string;
 }
+
 
 @Component({
   selector: 'app-women',
@@ -34,10 +41,10 @@ export class WomenComponent {
         'assets/women/1-7.png',
       ],
       sizes: [
-        { label: 'S', price: 70000, stocks: 20, color: ['Black', 'White'] },
-        { label: 'M', price: 80000, stocks: 30, color: ['Black', 'White'] },
-        { label: 'L', price: 85000, stocks: 30, color: ['Black', 'White'] },
-        { label: 'XL', price: 90000, stocks: 60, color: ['Black', 'White']},
+        { label: 'S', price: 70000, stocks: 5, color: ['Black', 'White'] },
+        { label: 'M', price: 80000, stocks: 6, color: ['Black', 'White'] },
+        { label: 'L', price: 85000, stocks: 7, color: ['Black', 'White'] },
+        { label: 'XL', price: 90000, stocks: 8, color: ['Black', 'White']},
       ], 
     },
     { name: 'Shirt 2', price: 'Rp 210.000', image: 'assets/women/2.jpeg' },
@@ -52,6 +59,12 @@ export class WomenComponent {
         'assets/women/7-3.png',
         'assets/women/7-4.png',
       ], 
+      sizes: [
+        { label: 'S', price: 70000, stocks: 2, color: ['Black', 'Cream', 'Red', 'Purple'] },
+        { label: 'M', price: 80000, stocks: 3, color: ['Black', 'White', 'Red', 'Purple'] },
+        { label: 'L', price: 85000, stocks: 6, color: ['Black', 'White', 'Red', 'Purple'] },
+        { label: 'XL', price: 90000, stocks: 5, color: ['Black', 'White', 'Red', 'Purple']},
+      ],
     },
     { name: 'Shirt 8', price: 'Rp 24.99', image: 'assets/women/2.jpeg' },
     { name: 'Shirt 9', price: 'Rp 19.99', image: 'assets/women/2.jpeg' },
@@ -67,10 +80,11 @@ export class WomenComponent {
   ];
 
   isDialogOpen = false;
-  selectedShirt: any = null;
+  selectedShirt: any | null = null; // This holds the selected shirt data
   selectedImage: string = '';
   selectedIndex: number = 0;
   selectedSize: string | null = null;
+  selectedBuy: any | null = null; // This holds the selected buy data
   selectedSizes: { label: string; price: number; qty: number; color: string }[] = [];
   qty = 1; // Jumlah default
   totalPrice = 0; // Harga total (qty * harga per unit)
@@ -78,16 +92,6 @@ export class WomenComponent {
   selectedColors: string[] = []; // Daftar warna yang dipilih
   totalSizePrice: number = 0;
   displayedPrice: number = 0;
-
-  colors: string[] = ['Black', 'White'];
-
-  sizes = [
-    { label: 'S', price: 50000 },
-    { label: 'M', price: 60000 },
-    { label: 'L', price: 70000 },
-    { label: 'XL', price: 80000 },
-    { label: 'XXL', price: 90000 },
-  ];
 
   openDialog(shirt: any) {
     this.selectedShirt = shirt;
@@ -98,21 +102,30 @@ export class WomenComponent {
     this.isDialogOpen = true;
   }
 
-  closeDialog() {
-    this.isDialogOpen = false;
+
+  buy() {
+    if (!this.selectedShirt || !this.selectedBuy || !this.selectedColor) {
+      alert('Please select a shirt, color and size before buying.');
+      return;
+    }
+
+    // Add the selected shirt and size to the cart
+    this.cartService.addToCart(this.selectedShirt, this.selectedBuy, this.selectedColor, this.totalSizePrice);
+
+    // Navigate to the /buy page
+    this.router.navigate(['/buy']);
   }
 
+  closeDialog() {
+    this.isDialogOpen = false; // Close the dialog
+  }
+  
   selectImage(index: number) {
     this.selectedIndex = index;
     this.selectedImage = this.selectedShirt.images[index];
   }
 
-//  selectSize(size: { label: string; price: string }) {
-//    this.selectedSize = size.label;
-//    this.displayedPrice = size.price;
-//    this.updateTotalPrice(); // Hitung ulang harga total
-
-//  }
+  constructor(private cartService: CartService, private router: Router) {}
 
 
   previousImage() {
@@ -134,23 +147,40 @@ export class WomenComponent {
     this.updateDisplayedPrice();
   }
 
-   selectSize(size: { label: string; price: number; qty: number }): void {
-    const existingSize = this.selectedSizes.find(s => s.label === size.label && s.color === this.selectedColor);
-    if (existingSize) {
-      // Jika ukuran dan warna sudah dipilih, tambahkan jumlahnya
-      existingSize.qty++;
-    } else {
-      // Jika ini ukuran baru dengan warna baru, tambahkan dengan qty 1
-      this.selectedSizes.push({ label: size.label, price: size.price, qty: 1, color: this.selectedColor });
+  selectSize(size: { label: string; price: number; stocks: number; color: string[] }): void {
+    if (!this.selectedColor) {
+      alert('Silakan pilih warna terlebih dahulu!');
+      return;
     }
+    // Pastikan ada stok untuk ukuran ini
+    if (size.stocks > 0) {
+      const existingSize = this.selectedSizes.find(s => s.label === size.label && s.color === this.selectedColor);
   
-    this.totalSizePrice += size.price; // Menambahkan harga ukuran yang dipilih
-    this.updateDisplayedPrice();
+      if (existingSize) {
+        // Jika ukuran dan warna sudah dipilih, tambahkan jumlahnya
+        existingSize.qty++;
+      } else {
+        // Jika ini ukuran baru dengan warna baru, tambahkan dengan qty 1
+        this.selectedSizes.push({ 
+          label: size.label, 
+          price: size.price, 
+          qty: 1, 
+          color: this.selectedColor 
+        });
+      }
+  
+      // Kurangi stok
+      size.stocks--;
+      this.totalSizePrice += size.price; // Menambahkan harga ukuran yang dipilih
+      this.updateDisplayedPrice();
+    } else {
+      alert('Stok habis untuk ukuran ini!');
+    }
   }
   
-  // Remove or reduce quantity of selected size
-  removeSize(size: { label: string; price: number; qty: number }): void {
-    const existingSize = this.selectedSizes.find(s => s.label === size.label);
+  
+  removeSize(size: { label: string; price: number; qty: number; color: string }): void {
+    const existingSize = this.selectedSizes.find(s => s.label === size.label && s.color === size.color);
     if (existingSize) {
       if (existingSize.qty > 1) {
         existingSize.qty--;
@@ -162,10 +192,17 @@ export class WomenComponent {
           this.totalSizePrice -= size.price;
         }
       }
+  
+      // Tambahkan stok kembali
+      const shirtSize = this.selectedShirt.sizes.find((z: { label: string; }) => z.label === size.label);
+      if (shirtSize) {
+        shirtSize.stocks++;
+      }
+  
       this.updateDisplayedPrice();
     }
   }
-
+  
   
   
 
@@ -184,4 +221,5 @@ updateDisplayedPrice(): void {
     const message = encodeURIComponent(`Halo, saya ingin memesan produk ini: ${shirt.name} dengan harga ${shirt.price}.`);
     window.open(`https://wa.me/yourNumber?text=${message}`, '_blank');
   }
+ 
 }

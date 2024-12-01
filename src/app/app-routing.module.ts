@@ -4,6 +4,7 @@ import { WomenComponent } from './women/women.component';
 import { MenComponent } from './men/men.component';
 import { KidsComponent } from './kids/kids.component';
 import { HomeComponent } from './home/home.component';
+import { BuyComponent } from './buy/buy.component';
 //import { PurchaseComponent } from './purchase/purchase.component';
 
 export const routes: Routes = [
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'men', component: MenComponent },
   { path: 'kids', component: KidsComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'buy', component: BuyComponent },
 //  { path: 'women/purchase/:shirtId', component: PurchaseComponent },
 ];
 

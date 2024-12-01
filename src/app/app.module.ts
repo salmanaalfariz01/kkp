@@ -24,6 +24,9 @@ import { KidsComponent } from './kids/kids.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { BuyComponent } from './buy/buy.component';
+import { CartService } from './buy/cart.service'; // Import the service
+
 //import { PurchaseComponent } from './purchase/purchase.component';
 
 
@@ -35,6 +38,7 @@ import { FooterComponent } from './footer/footer.component';
     MenComponent,
     KidsComponent,
     HomeComponent,
+    BuyComponent,
     HeaderComponent,
     FooterComponent,
   //  PurchaseComponent
@@ -53,7 +57,7 @@ import { FooterComponent } from './footer/footer.component';
     MatDialogModule,
     MatIconModule
 ],
-  providers: [ ],
-  bootstrap: [AppComponent]
+providers: [CartService], // Register the service
+bootstrap: [AppComponent]
 })
 export class AppModule { }

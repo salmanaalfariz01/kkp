@@ -17,7 +17,7 @@
     }
 
     
-    .size-box {
+    .size-box-content {
       display: inline-block;
       margin: 2px;
       width: 30px;
@@ -32,7 +32,7 @@
       cursor: pointer;
     }
 
-    .size-box:hover {
+    .size-box-content:hover {
       background-color: #444; /* Slightly lighter shade on hover */
     }
 
@@ -40,7 +40,7 @@
       display: none; /* Hide the default radio button */
     }
 
-    input[type="radio"]:checked + .size-box {
+    input[type="radio"]:checked + .size-box-content {
       background-color: #555; /* Darker background for selected size */
     }
   
@@ -93,7 +93,7 @@
 
   
   
-  .custom-dialog {
+.custom-dialog {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -127,14 +127,6 @@
     max-height: 90%; /* Maksimalkan ukuran agar responsif */
 }
 
-/* Responsif untuk layar lebih kecil */
-@media (max-width: 768px) {
-    .dialog-content {
-        width: 90vw;  /* Lebar dialog menyesuaikan lebih besar */
-        height: 80vh; /* Tinggi dialog menyesuaikan lebih besar */
-    }
-}
-
 
 .main-image-container {
     display: flex;
@@ -145,7 +137,7 @@
     grid-template-columns: repeat(3, 1fr); /* Tiga kolom */
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0px;
     overflow-y: auto;
     padding-left: 30px;
   }
@@ -182,7 +174,39 @@
     cursor: pointer;
     font-size: 18px;
 }
+.small {
+  font-size: 11px;
+  margin: 4px 0; /* Adjust the gap to your preference */
+}
 
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: left; 
+  gap: 2px; /* Space between buttons */
+}
+
+.size-container {
+  display: flex;
+  flex-direction: column; /* Stack button and stock display vertically */
+  align-items: left; 
+}
+.color-box-dialog {
+  display: inline-block;
+  margin: 2px;
+  width: 50px;
+  height: 35px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid black;      
+  border-radius: 3px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+
+}
 .size-box-dialog {
   display: inline-block;
   margin: 2px;
@@ -198,9 +222,34 @@
   cursor: pointer;
 }
 
-.size-box-dialog:hover {
-  background-color: #0932e6; /* Slightly lighter shade on hover */
+.size-box-dialog.active {
+  background-color: #0932e6; /* Warna latar belakang saat aktif */
+  color: #fff; /* Warna teks saat aktif */
+  transform: scale(1.1); /* Membesar sedikit */
 }
+
+.size-box-dialog:disabled {
+  background-color: #ccc; /* Warna untuk tombol nonaktif */
+  cursor: not-allowed; /* Kursor tidak bisa diklik */
+}
+
+.size-box-dialog .size-stock {
+  font-size: 11px; /* Ukuran font angka stok */
+  color: #444; /* Warna angka */
+}
+
+
+.size-stock {
+    text-align: center; /* Center the stock text */
+}
+
+.stock-display {
+    font-size: 11px; /* Adjust font size as needed */
+    color: #444; /* Adjust color as needed */
+}
+
+
+
 
 .nav-button.left {
     left: 10px;
@@ -214,28 +263,6 @@
   display: flex;
 }
 
-.color-box-dialog {
-  width: 10px;
-  height: 14px;
-  border: 2px solid #000;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.3s;
-  margin: 3px;
-}
-
-.color-box-dialog.active {
-  transform: scale(1.2); /* Warna yang dipilih akan lebih besar */
-}
-
-.color-box-dialog:hover {
-  opacity: 0.8;
-}
-
-.selected-colors {
-  font-size: 16px;
-  color: black;
-}
 
 
 
@@ -266,3 +293,32 @@
   border-radius: 2px;
 }
 
+.size-box-close{
+  display: inline-block;
+  margin: 2px;
+  width: 60px;
+  height: 35px;
+  background-color: gray;
+  color: black;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid black;      
+  border-radius: 3px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.size-box-buy{
+  display: inline-block;
+  margin: 2px;
+  width: 50px;
+  height: 35px;
+  background-color: rgb(0, 128, 13);
+  color: black;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid black;      
+  border-radius: 3px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}

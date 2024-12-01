@@ -4,8 +4,10 @@ import { WomenComponent } from './women/women.component';
 import { MenComponent } from './men/men.component';
 import { KidsComponent } from './kids/kids.component';
 import { HomeComponent } from './home/home.component';
+import { BuyComponent } from './buy/buy.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
     MenComponent,
     KidsComponent,
     HomeComponent,
+    BuyComponent,
     HeaderComponent,
     FooterComponent],
   templateUrl: './app.component.html',

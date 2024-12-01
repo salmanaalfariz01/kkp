@@ -7,22 +7,22 @@
             <img [src]="shirt.image" alt="{{ shirt.name }}" />
             <p>{{ shirt.name }}</p>
             <p>Price: {{ shirt.price }}</p>
-              <div class="size-options">
+              <div class="size-options-content">
                 <label>
                   <input type="radio" name="size2" value="S">
-                  <span class="size-box">S</span>
+                  <span class="size-box-content">S</span>
               </label>
                 <label>
                     <input type="radio" name="size2" value="M">
-                    <span class="size-box">M</span>
+                    <span class="size-box-content">M</span>
                 </label>
                 <label>
                     <input type="radio" name="size2" value="L">
-                    <span class="size-box">L</span>
+                    <span class="size-box-content">L</span>
                 </label>
                 <label>
                     <input type="radio" name="size2" value="XL">
-                    <span class="size-box">XL</span>
+                    <span class="size-box-content">XL</span>
                 </label>
               </div>
               
@@ -56,43 +56,59 @@
               (click)="selectImage(i)"
               alt="Thumbnail" />
       </div>
+       <!-- Pilihan Warna -->
+       <p class="small">Select Color:</p>
+       <div class="color-options">
+         <div>
+           <button
+             *ngFor="let color of selectedShirt?.sizes[0]?.color"
+             [ngStyle]="{'background-color': color === selectedColor ? color : 'transparent'}"
+             [class.active]="color === selectedColor"
+             class="color-box-dialog"
+             (click)="selectColor(color)">
+             {{ color }}
+           </button>
+         </div>
+       </div>
+      <p class="small">Select Size:</p>
       <div class="size-options">
-        <h3>Select Size:</h3>
-        <button
-          *ngFor="let size of selectedShirt?.sizes"
-          [class.active]="selectedSizes.includes(size)"
-          class="size-box-dialog"
-          (click)="selectSize(size)">
-          {{ size.label }}
-        </button>
-        <!-- Pilihan Warna -->
-        <div class="color-options">
-          <h3>Select Color:</h3>
+        <div *ngFor="let size of selectedShirt?.sizes" class="size-container">
           <button
-            *ngFor="let color of colors"
-            [class.active]="color === selectedColor"
-            (click)="selectColor(color)">
-            {{ color }}
+            [class.active]="selectedSizes.includes(size)"
+            class="size-box-dialog"
+            [disabled]="size.stocks <= 0" 
+            (click)="selectSize(size)">
+            {{ size.label }}
           </button>
-        </div>
-      
-        <!-- Daftar Ukuran yang Dipilih -->
-        <div class="selected-sizes">
-          <ul>
-            <li *ngFor="let size of selectedSizes">
-              {{ size.label }} - {{ size.color }} - Rp {{ size.price }} x {{ size.qty }} 
-              = Rp {{ size.price * size.qty }}
-              <button (click)="removeSize(size)">Remove</button>
-            </li>
-          </ul>
-          <p>Total Price for Sizes: Rp {{ totalSizePrice }}</p>
+          <div class="size-stock">
+            <span class="stock-display">{{ size.stocks }}</span>
+          </div>
         </div>
       </div>
-            
+ 
+      
+
+      
+      
+        
+        <!-- Daftar Ukuran yang Dipilih -->
+        <div class="selected-sizes">
+            <div *ngFor="let size of selectedSizes">
+              {{ size.label }} - {{ size.color }} - Rp {{ size.price | number:'1.0-0' }} x {{ size.qty }} 
+              = Rp {{ size.price * size.qty | number:'1.0-0' }}
+              <button (click)="removeSize(size)">-</button>
+            </div>
+          <p>Total Price: Rp {{ totalSizePrice | number:'1.0-0' }}</p>
+        </div>
+
+                <!-- Buttons for Cancel and Buy -->
+        <div class="button-container">
+          <button class="size-box-close" (click)="closeDialog()">Cancel</button>
+          <button class="size-box-buy" (click)="buy()">Buy</button>
+        </div>
+      </div>
+      
     </div>
-    <button class="button-image" (click)="closeDialog()">Cancel</button>
-    <button class="button-image" >Buy</button> 
-  </div>
 </div>
 
 
